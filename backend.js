@@ -12,7 +12,7 @@ app.get('/api/orders/:email', (req, res) => {
   const { email } = req.params;
   // Read and process the trackings.csv file
   const orders = [];
-  fs.createReadStream('trackings.csv')
+  fs.createReadStream('data/trackings.csv')
     .pipe(csv())
     .on('data', (data) => {
       if (data.email === email) {
@@ -46,7 +46,7 @@ app.get('/api/orders/:orderId', (req, res) => {
         // Include other relevant properties
 
         // Read and process the checkpoints.csv file
-        fs.createReadStream('checkpoints.csv')
+        fs.createReadStream('data/checkpoints.csv')
           .pipe(csv())
           .on('data', (checkpointData) => {
             if (checkpointData.tracking_number === order.tracking_number) {
