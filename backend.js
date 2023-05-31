@@ -37,7 +37,7 @@ app.get('/api/orders/:orderId', (req, res) => {
     tracking_number: '',
     checkpoints: [],
   };
-  fs.createReadStream('trackings.csv')
+  fs.createReadStream('data/trackings.csv')
     .pipe(csv())
     .on('data', (data) => {
       if (data.orderNo === orderId) {
